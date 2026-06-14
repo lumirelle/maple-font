@@ -79,6 +79,7 @@ def check_ftcli():
 # =========================================================================================
 
 WIDTH_MAP = {
+    "wide": 620,
     "default": 600,
     "narrow": 550,
     "slim": 500,
@@ -207,7 +208,7 @@ def parse_args(args: list[str] | None = None):
         type=str,
         choices=WIDTH_MAP.keys(),
         default=None,
-        help="Set glyph width: default (600), narrow (550), slim (500)",
+        help="Set glyph width: wide (620), default (600), narrow (550), slim (500)",
     )
     feature_group.add_argument(
         "--nf-mono",
@@ -591,6 +592,8 @@ class FontConfig:
             return "NR"
         elif self.width == "slim":
             return "SL"
+        elif self.width == "wide":
+            return "WD"
 
     def should_build_nf_cn(self) -> bool:
         return self.cn["with_nerd_font"] and self.nerd_font["enable"]
