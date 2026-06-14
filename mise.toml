@@ -1,0 +1,8 @@
+[env]
+_.path = ["./.venv/Scripts"]
+CMAKE_GENERATOR = "Ninja"
+CMAKE_C_COMPILER = "gcc"
+CMAKE_CXX_COMPILER = "g++"
+
+[tools]
+python = "3.12"
