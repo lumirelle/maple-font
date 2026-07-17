@@ -295,6 +295,11 @@ def parse_args(args: list[str] | None = None):
         help="Reinstantiate variable CN base font",
     )
     build_group.add_argument(
+        "--cn-wenyuan",
+        action="store_true",
+        help="Use cn-base-static-wenyuan.zip as the CN base font archive",
+    )
+    build_group.add_argument(
         "--archive",
         action="store_true",
         help="Build font archives with config and license. If it has the `--cache` flag, only archive NF and CN formats",
@@ -402,6 +407,8 @@ class FontConfig:
             "use_static_base_font": True,  # Deprecated. Always `True`
             # scale factor for CN glyphs
             "scale_factor": (1.0, 1.0),
+            # CN static base font archive to download
+            "base_zip_path": "cn-base-static.zip",
         }
         self.glyph_width = 600
         self.glyph_width_cn_narrow = 1000
@@ -530,6 +537,9 @@ class FontConfig:
             self.cn["scale_factor"] = args.cn_scale_factor
         if isinstance(self.cn["scale_factor"], (float, list)):
             self.cn["scale_factor"] = parse_scale_factor(self.cn["scale_factor"])
+
+        if args.cn_wenyuan:
+            self.cn["base_zip_path"] = "cn-base-static-wenyuan.zip"
 
     def _apply_build_options(self, args):
         """Apply general build options."""
@@ -796,9 +806,12 @@ class BuildOption:
                 '\nNo `"cn.enable": true` in config.json or `--cn` / `--cn-both` in argv. Skip CN build.'
             )
             return False
-        return self.__ensure_cn_static_fonts(clean_cache=config.cn["clean_cache"])
+        return self.__ensure_cn_static_fonts(
+            clean_cache=config.cn["clean_cache"],
+            zip_path=config.cn["base_zip_path"],
+        )
 
-    def __ensure_cn_static_fonts(self, clean_cache: bool) -> bool:
+    def __ensure_cn_static_fonts(self, clean_cache: bool, zip_path: str) -> bool:
         if clean_cache:
             print("Clean CN static fonts")
             shutil.rmtree(self.cn_static_dir, ignore_errors=True)
@@ -807,7 +820,6 @@ class BuildOption:
             return True
 
         tag = "cn-base"
-        zip_path = "cn-base-static.zip"
         if download_cn_base_font(
             tag=tag,
             zip_path=zip_path,
