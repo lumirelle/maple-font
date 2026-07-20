@@ -678,7 +678,7 @@ OpenType 特性可以控制字体的内置变体和连字。您可以通过修�
 usage: build.py [-h] [-v] [-d] [--debug] [-n] [--feat FEAT] [--apply-fea-file]
                 [--hinted | --no-hinted] [--liga | --no-liga] [--keep-infinite-arrow]
                 [--infinite-arrow] [--remove-tag-liga] [--line-height LINE_HEIGHT]
-                [--width {default,narrow,slim}] [--nf-mono] [--nf-propo]
+                [--width {wider,wide,default,narrow,slim}] [--nf-mono] [--nf-propo]
                 [--cn-narrow] [--cn-scale-factor CN_SCALE_FACTOR] [--nf | --no-nf]
                 [--cn | --no-cn] [--cn-both] [--ttf-only] [--least-styles]
                 [--font-patcher] [--cache] [--cn-rebuild] [--archive]
@@ -705,8 +705,8 @@ Feature Options:
   --remove-tag-liga     移除纯文本标签连字，例如 `[TODO]`
   --line-height LINE_HEIGHT
                         行高的缩放因子 (例如 1.1)
-  --width {default,narrow,slim}
-                        设置字形宽度: default (600), narrow (550), slim (500)
+  --width {wider,wide,default,narrow,slim}
+                        设置字形宽度: wider (625), wide (620), default (600), narrow (550), slim (500)
   --nf-mono             使 Nerd Font 图标的宽度固定
   --nf-propo            使 Nerd Font 图标的宽度不固定，覆盖 `--nf-mono`
   --cn-narrow           减小中文/日文字形间距（同时会让系统无法识别为等宽字体）

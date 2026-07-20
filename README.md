@@ -564,7 +564,9 @@ python build.py
 
 You can set `"width": "narrow"` in `config.json` or add `--width slim` as a cli flag to change glyph width at build time.
 
-There are 3 options:
+There are 5 options:
+- wider: 625
+- wide: 620
 - default: 600
 - narrow: 550
 - slim: 500
@@ -669,7 +671,7 @@ By enabling `cv99`, all Chinese punctuation marks will be centred. See more deta
 usage: build.py [-h] [-v] [-d] [--debug] [-n] [--feat FEAT] [--apply-fea-file]
                 [--hinted | --no-hinted] [--liga | --no-liga] [--keep-infinite-arrow]
                 [--infinite-arrow] [--remove-tag-liga] [--line-height LINE_HEIGHT]
-                [--width {default,narrow,slim}] [--nf-mono] [--nf-propo]
+                [--width {wider,wide,default,narrow,slim}] [--nf-mono] [--nf-propo]
                 [--cn-narrow] [--cn-scale-factor CN_SCALE_FACTOR] [--nf | --no-nf]
                 [--cn | --no-cn] [--cn-both] [--ttf-only] [--least-styles]
                 [--font-patcher] [--cache] [--cn-rebuild] [--archive]
@@ -698,8 +700,8 @@ Feature Options:
   --remove-tag-liga     Remove plain text tag ligatures like `[TODO]`
   --line-height LINE_HEIGHT
                         Scale factor for line height (e.g., 1.1)
-  --width {default, narrow, slim}
-                        Set glyph width: default (600), narrow (550), slim (500)
+  --width {wider, wide, default, narrow, slim}
+                        Set glyph width: wider (625), wide (620), default (600), narrow (550), slim (500)
   --nf-mono             Make Nerd Font icons' width fixed
   --nf-propo            Make Nerd Font icons' width variable, override `--nf-mono`
   --cn-narrow           Make CN / JP characters narrow (And the font cannot be

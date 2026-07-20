@@ -24,11 +24,13 @@ on:
         default: false
         type: boolean
       width:
-        description: 'Glyph width mode (add "--width <default|narrow|slim>" to build args)'
+        description: 'Glyph width mode (add "--width <wider|wide|default|narrow|slim>" to build args)'
         required: false
         default: default
         type: choice
         options:
+          - wider
+          - wide
           - default
           - narrow
           - slim
