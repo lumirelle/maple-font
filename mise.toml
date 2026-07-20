@@ -5,4 +5,8 @@ CMAKE_C_COMPILER = "gcc"
 CMAKE_CXX_COMPILER = "g++"
 
 [tools]
-python = "3.12"
+python = "latest"
+uv = 'latest'
+
+[deps.uv]
+auto = true
